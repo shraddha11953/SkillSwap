@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Welcome, {{ user.username }}!</h2>
+<h2>Your Dashboard</h2>
+<a href="{% url 'add_skill' %}" class="btn btn-outline-primary mb-3">Add New Skill</a>
+<ul class="list-group">
+    {% for skill in skills %}
+        <li class="list-group-item">
+            <strong>{{ skill.title }}</strong> – {{ skill.hourly_rate }} credits/hr
+        </li>
+    {% empty %}
+        <li class="list-group-item">No skills added yet.</li>
+    {% endfor %}
+</ul>
+
+
+<p>Here you can chat with others:</p>
+
+<!-- Link to a specific chat room -->
+<a href="{% url 'chat_room' room_name='room123' %}">Go to Chat Room</a>
+<a href="{% url 'chat_room' room_name='room123' %}">Join Chat</a>
+
+{% endblock %}
+
+

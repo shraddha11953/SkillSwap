@@ -1,0 +1,10 @@
+<a class="btn btn-primary" href="login/" role="button">Login</a>
+<a class="btn btn-primary" href="register/" role="button">Register</a>
+
+{% for skill in skills %}
+  <div>
+    <h2>{{ skill.title }} ({{ skill.hourly_rate }} credits/hr)</h2>
+    <p>{{ skill.description }}</p>
+    <p>By {{ skill.user.username }}</p>
+  </div>
+{% endfor %}

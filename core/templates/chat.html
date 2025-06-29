@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Welcome to the Chat Room: {{ room_name }}</h2>
+    
+    <div id="chatbox" style="height: 300px; overflow-y: scroll; border: 1px solid #ccc;">
+        <!-- This is where the chat messages will appear -->
+    </div>
+    
+    <input type="text" id="message-input" placeholder="Type a message" class="form-control mb-2">
+    <button id="send-message" class="btn btn-primary">Send</button>
+
+    <script>
+        const roomName = "{{ room_name }}";  // Dynamically set room name
+        const chatSocket = new WebSocket(
+            'ws://' + window.location.host + '/ws/chat/' + roomName + '/'
+        );
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            const message = data.message;
+            const chatbox = document.querySelector('#chatbox');
+            chatbox.innerHTML += message + '<br>';
+            chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to the latest message
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        // Send message when the button is clicked
+        document.querySelector('#send-message').onclick = function(e) {
+            const messageInputDom = document.querySelector('#message-input');
+            const message = messageInputDom.value;
+            if (message) {
+                chatSocket.send(JSON.stringify({ 'message': message }));
+                messageInputDom.value = '';  // Clear input after sending
+            }
+        };
+    </script>
+{% endblock %}

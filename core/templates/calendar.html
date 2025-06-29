@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Session Calendar</h2>
+<div id='calendar'></div>
+{% csrf_token %}
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    let calendarEl = document.getElementById('calendar');
+    let csrfToken = '{{ csrf_token }}';
+
+    let calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        selectable: true,
+        events: '/get-events/',
+        select: function(info) {
+            let skill = prompt("Enter Skill ID:");
+            let with_user = prompt("Enter Other User ID:");
+
+            fetch('/add-event/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                },
+                body: JSON.stringify({
+                    skill: skill,
+                    with_user: with_user,
+                    start: info.startStr,
+                    end: info.endStr,
+                })
+            }).then(response => {
+                if (response.ok) {
+                    alert("Session Scheduled!");
+                    calendar.refetchEvents();
+                }
+            });
+        }
+    });
+
+    calendar.render();
+});
+</script>
+
+<style>
+#calendar {
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+</style>
+{% endblock %}
