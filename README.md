@@ -27,6 +27,10 @@
 **Home Page:**  
 ![Home](core/static/images/home.png)
 
+**Register:**  
+![Register](core/static/images/register.png)
+
+
 **Login Page:**  
 ![Login](core/static/images/login.png)
 
@@ -42,8 +46,6 @@
 **chat Room:**  
 ![chat_ROOM](core/static/images/chat_room.png)
 
-**Register:**  
-![Register](core/static/images/register.png)
 
 
 
