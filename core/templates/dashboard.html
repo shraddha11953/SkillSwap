@@ -3,6 +3,11 @@
 <h2>Welcome, {{ user.username }}!</h2>
 <h2>Your Dashboard</h2>
 <a href="{% url 'add_skill' %}" class="btn btn-outline-primary mb-3">Add New Skill</a>
+<a href="{% url 'exchange' %}" class="btn btn-outline-primary mb-3">Exchange</a>
+<a href="{% url 'chat' %}" class="btn btn-outline-primary mb-3">chat</a>
+<a href="{% url 'chat' %}" class="btn btn-outline-primary mb-3">calender</a>
+
+
 <ul class="list-group">
     {% for skill in skills %}
         <li class="list-group-item">

@@ -15,7 +15,7 @@ urlpatterns = [
     path('add-event/', views.add_event, name='add_event'),
     path('chat/<str:room_name>/', views.chat_room, name='chat_room'),
     path('test/',views.test,name='test'),
-    path("ws/", include("core.routing.websocket_urlpatterns")),
+    #path("ws/", include("core.routing.websocket_urlpatterns")),
 
 
 ]

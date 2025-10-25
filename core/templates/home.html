@@ -1,10 +1,28 @@
-<a class="btn btn-primary" href="login/" role="button">Login</a>
-<a class="btn btn-primary" href="register/" role="button">Register</a>
+{% extends 'base.html' %}
 
-{% for skill in skills %}
-  <div>
-    <h2>{{ skill.title }} ({{ skill.hourly_rate }} credits/hr)</h2>
-    <p>{{ skill.description }}</p>
-    <p>By {{ skill.user.username }}</p>
+{% block content %}
+  <div class="mb-3">
+      <a class="btn btn-primary" href="{% url 'login' %}" role="button">Login</a>
+      <a class="btn btn-primary" href="{% url 'register' %}" role="button">Register</a>
   </div>
-{% endfor %}
+
+  <div class="skills-list">
+      {% for skill in skills %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ skill.title }} ({{ skill.hourly_rate }} credits/hr)</h5>
+                <p class="card-text">{{ skill.description }}</p>
+                <p class="card-text"><small class="text-muted">By {{ skill.user.username }}</small></p>
+            </div>
+        </div>
+      {% empty %}
+        <p>No skills available yet.</p>
+      {% endfor %}
+  </div>
+{% endblock %}
+
+
+
+
+
+
