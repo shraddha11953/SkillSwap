@@ -28,16 +28,24 @@
 ![Home](core/static/images/home.png)
 
 **Login Page:**  
-![Login](screenshots/login.png)
+![Login](core/static/images/login.png)
 
 **Dashboard:**  
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](core/static/images/dashboard.png)
 
 **Add Skill:**  
-![Add Skill](screenshots/add_skill.png)
+![Add Skill](core/static/images/add_skill.png)
 
 **Exchange Request:**  
-![Exchange](screenshots/exchange.png)
+![Exchange](core/static/images/request_exchange.png)
+
+**chat Room:**  
+![chat_ROOM](core/static/images/chat_room.png)
+
+**Register:**  
+![Register](core/static/images/register.png)
+
+
 
 ---
 
